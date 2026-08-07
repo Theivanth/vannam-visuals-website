@@ -1,3 +1,4 @@
+import DesktopNav from "./components/layout/DesktopNav";
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "motion/react";
 import {
