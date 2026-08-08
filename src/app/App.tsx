@@ -1,6 +1,11 @@
+import Services from "./components/sections/Services";
+
+import FadeIn from "./components/shared/FadeIn";
+import SectionLabel from "./components/shared/SectionLabel";
+
+import { useState, useEffect, useRef } from "react";
 import Hero from "./components/sections/Hero";
 import DesktopNav from "./components/layout/DesktopNav";
-import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "motion/react";
 import {
   Menu, X, ArrowRight, ArrowDown, Heart, Camera, Star,
@@ -55,48 +60,12 @@ function VannamLogo({ onHero = false }: { onHero?: boolean }) {
   );
 }
 
-// ─── Helpers ───────────────────────────────────────────────
-function FadeIn({ children, delay = 0, y = 24, className = "" }: {
-  children: React.ReactNode; delay?: number; y?: number; className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.88, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >{children}</motion.div>
-  );
-}
-
-function SectionLabel({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <div className="flex items-center gap-3 justify-center mb-4">
-      <span className="h-px w-8" style={{ background: GOLD }} />
-      <span className="text-[10px] tracking-[0.42em] uppercase" style={{ fontFamily: SANS, color: dark ? GOLD : DARK_BG }}>
-        {children}
-      </span>
-      <span className="h-px w-8" style={{ background: GOLD }} />
-    </div>
-  );
-}
-
 // ─── Data ──────────────────────────────────────────────────
 const NAV_LINKS = [
   { label: "Services",   id: "services"   },
   { label: "Experience", id: "experience" },
   { label: "Stories",    id: "stories"    },
   { label: "About",      id: "about"      },
-];
-
-const CATEGORIES = [
-  { title: "Weddings",   sub: "Where two lives become one story",       img: imgChandelierWedding, tag: "Most Booked" },
-  { title: "Birthdays",  sub: "Every year, every smile, every spark",    img: imgGirlFlower,        tag: null },
-  { title: "Family",     sub: "The bonds that hold us together",         img: imgFamilyDusk,        tag: null },
-  { title: "Maternity",  sub: "The quiet power of becoming",             img: "https://images.unsplash.com/photo-1617267436399-7115c98ff87d?w=600&h=400&fit=crop&auto=format", tag: null },
-  { title: "Graduation", sub: "Years of effort, one golden moment",      img: "https://images.unsplash.com/photo-1721441932559-6fd00cd49e46?w=600&h=400&fit=crop&auto=format", tag: null },
 ];
 
 const STORIES_FEATURED = [
@@ -321,51 +290,6 @@ export default function App() {
                 ))}
               </div>
             </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ 4. SERVICES — light ═══════════════════════════════ */}
-      <section id="services" style={{ background: LIGHT_BG }} className="py-24 px-6">
-        <div className="max-w-[1380px] mx-auto">
-          <FadeIn className="text-center mb-14">
-            <SectionLabel>Services</SectionLabel>
-            <h2 style={{ ...lightH, fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(28px, 3.8vw, 48px)" }}>
-              Every Celebration,{" "}
-              <em style={{ fontFamily: CALISTO, fontWeight: 400, fontStyle: "italic" }}>Every Story</em>
-            </h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <FadeIn className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
-              <div className="group relative overflow-hidden rounded-2xl cursor-pointer w-full" style={{ minHeight: 440, height: "100%", background: "#2a1a10" }}>
-                <img src={CATEGORIES[0].img} alt="Wedding photography"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" style={{ minHeight: 440 }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/15 to-transparent" />
-                <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full" style={{ background: GOLD }}>
-                  <span className="text-[9px] tracking-[0.24em] text-white uppercase">{CATEGORIES[0].tag}</span>
-                </div>
-                <div className="absolute bottom-0 p-7">
-                  <h3 className="text-white leading-none mb-2" style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 26 }}>{CATEGORIES[0].title}</h3>
-                  <p className="text-[13px] font-light mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>{CATEGORIES[0].sub}</p>
-                  <span className="inline-flex items-center gap-1.5 text-[10.5px] tracking-[0.16em] uppercase" style={{ color: GOLD }}>
-                    View Gallery <ChevronRight size={11} />
-                  </span>
-                </div>
-              </div>
-            </FadeIn>
-            {CATEGORIES.slice(1).map((cat, i) => (
-              <FadeIn key={cat.title} delay={(i + 1) * 0.07}>
-                <div className="group relative overflow-hidden rounded-2xl bg-[#ddd8d2] cursor-pointer" style={{ height: 210 }}>
-                  <img src={cat.img} alt={`${cat.title} photography`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 p-5">
-                    <h3 className="text-white text-xl mb-0.5" style={{ fontFamily: SERIF, fontWeight: 700 }}>{cat.title}</h3>
-                    <p className="text-[11.5px] font-light leading-snug" style={{ color: "rgba(255,255,255,0.55)" }}>{cat.sub}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
           </div>
         </div>
       </section>
