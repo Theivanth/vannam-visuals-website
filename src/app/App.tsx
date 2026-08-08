@@ -1,11 +1,12 @@
 import Services from "./components/sections/Services";
+import Experience from "./components/sections/Experience";
 
 import FadeIn from "./components/shared/FadeIn";
 import SectionLabel from "./components/shared/SectionLabel";
 
 import { useState, useEffect, useRef } from "react";
 import Hero from "./components/sections/Hero";
-import DesktopNav from "./components/layout/DesktopNav";
+import DesktopNav from "./components/layout/DesktopNav";0
 import { motion, useInView } from "motion/react";
 import {
   Menu, X, ArrowRight, ArrowDown, Heart, Camera, Star,
@@ -17,12 +18,9 @@ import {
 
 // ─── Local image imports ───────────────────────────────────
 import imgBeachCouple       from "../imports/candid_wedding_photographer_si_1781933692_99738319_progressive.jpg";
-import imgWeddingCollage    from "../imports/candid_wedding_photographer_si_1781933692_bd9afc3c_progressive.jpg";
-import imgHaldi             from "../imports/candid_wedding_photographer_si_1781933692_a13c1a71_progressive.jpg";
 import imgBwCouple          from "../imports/candid_wedding_photographer_si_1781933692_a31d2973_progressive.jpg";
 import imgGirlFlower        from "../imports/candid_wedding_photographer_si_1781933692_afba47d3_progressive.jpg";
 import imgChandelierWedding from "../imports/candid_wedding_photographer_si_1781933692_4d95cb05_progressive.jpg";
-import imgEditorialBridal   from "../imports/candid_wedding_photographer_si_1781933692_28552c13_progressive.jpg";
 import imgUrbanEvent        from "../imports/specialised_photographers_1718641800_e43656dd_progressive.jpg";
 import imgFamilyDusk        from "../imports/candid_wedding_photographer_si_1781933692_aeb4f915_progressive.jpg";
 
@@ -66,12 +64,6 @@ const NAV_LINKS = [
   { label: "Experience", id: "experience" },
   { label: "Stories",    id: "stories"    },
   { label: "About",      id: "about"      },
-];
-
-const STORIES_FEATURED = [
-  { title: "Every Moment, Every Frame",        sub: "Wedding Full Coverage",     img: imgWeddingCollage,  tag: "Wedding",    date: "January 2024",  desc: "From the first garland to the final embrace — a complete wedding story captured across ceremonies, portraits, and unscripted moments of pure joy." },
-  { title: "Yellow & Gold — A Haldi Morning",  sub: "Pre-Wedding · Haldi",       img: imgHaldi,           tag: "Pre-Wedding", date: "March 2024",    desc: "Turmeric-painted hands, marigold garlands, and laughter that filled every corner. The haldi is where the heart speaks first." },
-  { title: "Dressed in Gold — A Bridal Editorial", sub: "Editorial · Portrait",  img: imgEditorialBridal, tag: "Editorial",   date: "February 2024", desc: "A haute-couture bridal gown, a quiet street, and the quiet confidence of a bride who knows exactly who she is." },
 ];
 
 const PROCESS = [
@@ -172,7 +164,7 @@ export default function App() {
     <div className="min-h-screen text-[#2E2E2E] overflow-x-hidden" style={{ fontFamily: SANS, background: LIGHT_BG }}>
 
       {/* ── FLOATING WHATSAPP ──────────────────────────────── */}
-      <a href="https://wa.me/6581444954" target="_blank" rel="noreferrer"
+      <a href="https://wa.me/6581444594" target="_blank" rel="noreferrer"
         aria-label="Chat on WhatsApp"
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.3)] hover:scale-110 transition-transform duration-200"
         style={{ background: DARK_BG }}>
@@ -295,43 +287,7 @@ export default function App() {
       </section>
 
       {/* ══ 5. FEATURED STORIES — dark ════════════════════════ */}
-      <section id="experience" style={{ background: DARK_BG }} className="py-24 px-6">
-        <div className="max-w-[1380px] mx-auto">
-          <FadeIn className="text-center mb-14">
-            <SectionLabel dark>Featured Stories</SectionLabel>
-            <h2 style={{ ...darkH, fontFamily: SERIF, fontWeight: 700, fontSize: "clamp(28px, 3.8vw, 48px)" }}>
-              Stories We've{" "}
-              <em style={{ fontFamily: CALISTO, fontWeight: 400, fontStyle: "italic" }}>Told</em>
-            </h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {STORIES_FEATURED.map((s, i) => (
-              <FadeIn key={s.title} delay={i * 0.1}>
-                <article className="group rounded-2xl overflow-hidden border border-white/6 flex flex-col h-full hover:border-[#C9A66B]/20 transition-all duration-300"
-                  style={{ background: "rgba(255,255,255,0.04)" }}>
-                  <div className="relative overflow-hidden" style={{ height: 260 }}>
-                    <img src={s.img} alt={s.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
-                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full backdrop-blur-sm" style={{ background: "rgba(201,166,107,0.9)" }}>
-                      <span className="text-[9px] tracking-[0.22em] text-white uppercase">{s.tag}</span>
-                    </div>
-                    <div className="absolute bottom-4 right-4 text-[10px] tracking-wide" style={{ color: "rgba(255,255,255,0.5)" }}>{s.date}</div>
-                  </div>
-                  <div className="p-7 flex flex-col flex-1">
-                    <p className="text-[10px] tracking-[0.18em] uppercase mb-2" style={{ color: GOLD }}>{s.sub}</p>
-                    <h3 className="leading-tight mb-3" style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 19, color: LIGHT_BG }}>{s.title}</h3>
-                    <p className="text-[13.5px] leading-[1.8] font-light flex-1 mb-5" style={{ color: "rgba(232,221,203,0.5)" }}>{s.desc}</p>
-                    <a href="#" className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.16em] uppercase group-hover:gap-3 transition-all" style={{ color: GOLD }}>
-                      Read Story <ArrowRight size={11} />
-                    </a>
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Experience />
 
       {/* ══ 6. PROCESS — light ════════════════════════════════ */}
       <section style={{ background: LIGHT_BG }} className="py-28 px-6 overflow-hidden">
